@@ -50,7 +50,9 @@ void loop() {
     digitalWrite(ledright, LOW);
     digitalWrite(ledtop, LOW);
 //    delay(0);
-  } else if(xPosition < 499){
+  } 
+  
+  if(xPosition < 499){
     digitalWrite(ledright, HIGH);
     digitalWrite(ledbot, LOW);
     digitalWrite(ledleft, LOW);
@@ -64,7 +66,9 @@ void loop() {
     digitalWrite(ledleft, LOW);
     digitalWrite(ledtop, HIGH);
 //    delay(0);
-  }else if(yPosition > 516){
+  }
+  
+  if(yPosition > 516){
     digitalWrite(ledright, LOW);
     digitalWrite(ledbot, HIGH);
     digitalWrite(ledleft, LOW);
@@ -78,7 +82,9 @@ void loop() {
     digitalWrite(ledleft, HIGH);
     digitalWrite(ledtop, HIGH);
 //    delay(0);
-  }else if(xPosition > 501 && yPosition > 516){
+  }
+  
+  if(xPosition > 501 && yPosition > 516){
     digitalWrite(ledright, LOW);
     digitalWrite(ledbot, HIGH);
     digitalWrite(ledleft, HIGH);
@@ -92,7 +98,9 @@ void loop() {
     digitalWrite(ledleft, LOW);
     digitalWrite(ledtop, HIGH);
 //    delay(0);
-  }else if(xPosition < 499 && yPosition > 516){
+  }
+  
+  if(xPosition < 499 && yPosition > 516){
     digitalWrite(ledright, HIGH);
     digitalWrite(ledbot, HIGH);
     digitalWrite(ledleft, LOW);
@@ -114,7 +122,9 @@ void loop() {
     digitalWrite(ledleft, HIGH);
     digitalWrite(ledtop, HIGH);
 //    delay(0);
-  }else if(buttonState == 1 && xPosition == 500 && yPosition == 515) {
+  }
+  
+  if(xPosition == 500 && yPosition == 515) {
     digitalWrite(ledright, LOW);
     digitalWrite(ledbot, LOW);
     digitalWrite(ledleft, LOW);
@@ -122,5 +132,6 @@ void loop() {
 //    delay(0);
   }
 
-  delay(1); // add some delay between reads
+    delay(0.5);
+  
 }
