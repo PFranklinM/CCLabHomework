@@ -12,8 +12,9 @@ const int BluePin4 = 9;
 const int BluePin5 = 11;
 const int BluePin6 = 13;
 
-int long counter = 0;
 int long moveCounter = 0;
+
+int long counter = 0;
 
 int xPin = A1;
 int yPin = A0;
@@ -81,10 +82,6 @@ void loop() {
 
   enemyMove();
 
-
-//collision detection can two lights be on at the same time?
-//if (255, 0, 255)
-//call comparison everytime something happens in the loop()
 }
 
 void playerMove(){
@@ -92,14 +89,12 @@ void playerMove(){
     //Player Movement
   xPosition = analogRead(xPin);
   yPosition = analogRead(yPin);
-//  buttonState = digitalRead(buttonPin);
+
   
 //  Serial.print("X: ");
 //  Serial.print(xPosition);
 //  Serial.print(" | Y: ");
 //  Serial.println(yPosition);
-//  Serial.print(" | Button: ");
-//  Serial.println(buttonState);
 
 
   if(BlueStart == true){
@@ -118,7 +113,7 @@ void playerMove(){
 
   if(BPin6 == true){
     moveCounter++;
-   if(yPosition > 493 && moveCounter > 2000){
+   if(xPosition < 504 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -136,7 +131,7 @@ void playerMove(){
       moveCounter = 0;
    }
 
-   if(xPosition > 508 && moveCounter > 2000){
+   if(yPosition > 493 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -157,7 +152,7 @@ void playerMove(){
 
   if(BPin5 == true){
     moveCounter++;
-    if(yPosition > 493 && moveCounter > 2000){
+    if(xPosition < 504 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, HIGH);
@@ -175,7 +170,7 @@ void playerMove(){
       moveCounter = 0;
     }
 
-   if(xPosition < 505 && moveCounter > 2000){
+   if(yPosition < 489 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -196,7 +191,7 @@ void playerMove(){
 
   if(BPin4 == true){
     moveCounter++;
-    if(yPosition > 493 && moveCounter > 2000){
+    if(xPosition < 504 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, HIGH);
       digitalWrite(BluePin3, LOW);
@@ -214,7 +209,7 @@ void playerMove(){
       moveCounter = 0;
     }
 
-    if(yPosition < 489 && moveCounter > 2000){
+    if(xPosition > 508 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -232,7 +227,7 @@ void playerMove(){
       moveCounter = 0;
    }
 
-   if(xPosition > 508 && moveCounter > 2000){
+   if(yPosition > 493 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, HIGH);
@@ -253,7 +248,7 @@ void playerMove(){
 
   if(BPin3 == true){
     moveCounter++;
-    if(yPosition > 493 && moveCounter > 2000){
+    if(xPosition < 504 && moveCounter > 1500){
       digitalWrite(BluePin1, HIGH);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -271,7 +266,7 @@ void playerMove(){
       moveCounter = 0;
     }
 
-    if(yPosition < 489 && moveCounter > 2000){
+    if(xPosition > 508 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -289,7 +284,7 @@ void playerMove(){
       moveCounter = 0;
    }
 
-   if(xPosition < 505 && moveCounter > 2000){
+   if(yPosition < 489 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -310,7 +305,7 @@ void playerMove(){
 
   if(BPin2 == true){
     moveCounter++;
-    if(yPosition < 489 && moveCounter > 2000){
+    if(xPosition > 508 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -328,7 +323,7 @@ void playerMove(){
       moveCounter = 0;
    }
 
-   if(xPosition > 508 && moveCounter > 2000){
+   if(yPosition > 493 && moveCounter > 1500){
       digitalWrite(BluePin1, HIGH);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, LOW);
@@ -349,7 +344,7 @@ void playerMove(){
 
   if(BPin1 == true){
     moveCounter++;
-    if(yPosition < 489 && moveCounter > 2000){
+    if(xPosition > 508 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, LOW);
       digitalWrite(BluePin3, HIGH);
@@ -367,7 +362,7 @@ void playerMove(){
       moveCounter = 0;
       }
    }
-   if(xPosition < 505 && moveCounter > 2000){
+   if(yPosition < 489 && moveCounter > 1500){
       digitalWrite(BluePin1, LOW);
       digitalWrite(BluePin2, HIGH);
       digitalWrite(BluePin3, LOW);
@@ -388,14 +383,12 @@ void playerMove(){
 
   void enemyMove(){
     
-    //Enemy Movement
-//  counter++;
-//
-//  if(counter < 10){
+  for(int long lightWait = 0; lightWait < 15000; lightWait++){
 
-    for(int long lightWait = 0; lightWait < 120000; lightWait++){
-//      Serial.println(lightWait);
-      if(lightWait < 20000){
+    counter++;
+       
+     if(counter < 300000){
+      if(lightWait < 2500){
         digitalWrite(RedPin1, HIGH);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, LOW);
@@ -441,7 +434,7 @@ void playerMove(){
         }
       }
 
-      if(lightWait >= 20000 && lightWait < 40000){
+      if(lightWait >= 2500 && lightWait < 5000){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, HIGH);
         digitalWrite(RedPin3, LOW);
@@ -487,7 +480,7 @@ void playerMove(){
         }
       }
 
-      if(lightWait >= 40000 && lightWait < 60000){
+      if(lightWait >= 5000 && lightWait < 7500){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, HIGH);
@@ -533,7 +526,7 @@ void playerMove(){
         }
       }
 
-      if(lightWait >= 60000 && lightWait < 80000){
+      if(lightWait >= 7500 && lightWait < 10000){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, LOW);
@@ -579,7 +572,7 @@ void playerMove(){
         }
       }
 
-      if(lightWait >= 80000 && lightWait < 100000){
+      if(lightWait >= 10000 && lightWait < 12500){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, LOW);
@@ -625,7 +618,7 @@ void playerMove(){
         }
       }
 
-      if(lightWait >= 100000){
+      if(lightWait >= 12500){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, LOW);
@@ -669,27 +662,287 @@ void playerMove(){
 
           delay(1000);
         }
+        }
+      }
+
+      if(counter >= 300000){
+        if(lightWait < 2500){
+        digitalWrite(RedPin1, HIGH);
+        digitalWrite(RedPin2, HIGH);
+        digitalWrite(RedPin3, LOW);
+        digitalWrite(RedPin4, LOW);
+        digitalWrite(RedPin5, LOW);
+        digitalWrite(RedPin6, LOW);
+         
+        RPin1 = true;
+        RPin2 = true;
+        RPin3 = false;
+        RPin4 = false;
+        RPin5 = false;
+        RPin6 = false;
+
+        playerMove();
+
+        if(RPin1 == true && BPin1 == true || RPin2 == true && BPin2 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+      }
+
+      if(lightWait >= 2500 && lightWait < 5000){
+        digitalWrite(RedPin1, LOW);
+        digitalWrite(RedPin2, HIGH);
+        digitalWrite(RedPin3, HIGH);
+        digitalWrite(RedPin4, LOW);
+        digitalWrite(RedPin5, LOW);
+        digitalWrite(RedPin6, LOW);
+         
+        RPin1 = false;
+        RPin2 = true;
+        RPin3 = true;
+        RPin4 = false;
+        RPin5 = false;
+        RPin6 = false;
+
+        playerMove();
+
+        if(RPin2 == true && BPin2 == true || RPin3 == true && BPin3 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+      }
+
+      if(lightWait >= 5000 && lightWait < 7500){
+        digitalWrite(RedPin1, LOW);
+        digitalWrite(RedPin2, LOW);
+        digitalWrite(RedPin3, HIGH);
+        digitalWrite(RedPin4, HIGH);
+        digitalWrite(RedPin5, LOW);
+        digitalWrite(RedPin6, LOW);
+         
+        RPin1 = false;
+        RPin2 = false;
+        RPin3 = true;
+        RPin4 = true;
+        RPin5 = false;
+        RPin6 = false;
+
+        playerMove();
+
+        if(RPin3 == true && BPin3 == true || RPin4 == true && BPin4 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+      }
+
+      if(lightWait >= 7500 && lightWait < 10000){
+        digitalWrite(RedPin1, LOW);
+        digitalWrite(RedPin2, LOW);
+        digitalWrite(RedPin3, LOW);
+        digitalWrite(RedPin4, HIGH);
+        digitalWrite(RedPin5, HIGH);
+        digitalWrite(RedPin6, LOW);
+         
+        RPin1 = false;
+        RPin2 = false;
+        RPin3 = false;
+        RPin4 = true;
+        RPin5 = true;
+        RPin6 = false;
+
+        playerMove();
+
+       if(RPin4 == true && BPin4 == true || RPin5 == true && BPin5 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+      }
+
+      if(lightWait >= 10000 && lightWait < 12500){
+        digitalWrite(RedPin1, LOW);
+        digitalWrite(RedPin2, LOW);
+        digitalWrite(RedPin3, LOW);
+        digitalWrite(RedPin4, LOW);
+        digitalWrite(RedPin5, HIGH);
+        digitalWrite(RedPin6, HIGH);
+         
+        RPin1 = false;
+        RPin2 = false;
+        RPin3 = false;
+        RPin4 = false;
+        RPin5 = true;
+        RPin6 = true;
+
+        playerMove();
+
+        if(RPin5 == true && BPin5 == true || RPin6 == true && BPin6 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+      }
+
+      if(lightWait >= 12500){
+        digitalWrite(RedPin1, HIGH);
+        digitalWrite(RedPin2, LOW);
+        digitalWrite(RedPin3, LOW);
+        digitalWrite(RedPin4, LOW);
+        digitalWrite(RedPin5, LOW);
+        digitalWrite(RedPin6, HIGH);
+         
+        RPin1 = true;
+        RPin2 = false;
+        RPin3 = false;
+        RPin4 = false;
+        RPin5 = false;
+        RPin6 = true;
+
+        playerMove();
+
+        if(RPin6 == true && BPin6 == true || RPin1 == true && BPin1 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          digitalWrite(BluePin4, LOW);
+          digitalWrite(BluePin5, LOW);
+          digitalWrite(BluePin6, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+          digitalWrite(RedPin4, HIGH);
+          digitalWrite(RedPin5, HIGH);
+          digitalWrite(RedPin6, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+          digitalWrite(RedPin4, LOW);
+          digitalWrite(RedPin5, LOW);
+          digitalWrite(RedPin6, LOW);
+
+          delay(1000);
+        }
+        }
       }
     }
-
-
-//  if(counter > 10){
-//  digitalWrite(RedPin1, HIGH);
-//  digitalWrite(RedPin2, HIGH);
-//  digitalWrite(RedPin3, LOW);
-//
-//  RPin1 = true;
-//  RPin2 = true;
-//  RPin3 = false;
-//
-//  digitalWrite(RedPin1, LOW);
-//  digitalWrite(RedPin2, HIGH);
-//  digitalWrite(RedPin3, HIGH);
-//
-//  RPin1 = false;
-//  RPin2 = true;
-//  RPin3 = true;
-//  }
 }
 
   
