@@ -59,35 +59,14 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   enemyMove();
-  playerMove();
 
 
 //collision detection can two lights be on at the same time?
 //if (255, 0, 255)
 //call comparison everytime something happens in the loop()
-  if(BPin1 == true && RPin1 == true || BPin2 == true && RPin2 == true || BPin3 == true && RPin3 == true){
-      digitalWrite(RedPin1, HIGH);
-      digitalWrite(RedPin2, HIGH);
-      digitalWrite(RedPin3, HIGH);
-
-      digitalWrite(RedPin1, LOW);
-      digitalWrite(RedPin2, LOW);
-      digitalWrite(RedPin3, LOW);
-  }
-
-  if(buttonState == 0){
-
-    digitalWrite(RedPin1, HIGH);
-    digitalWrite(RedPin2, LOW);
-    digitalWrite(RedPin3, LOW);
-
-    RPin1 = true;
-    RPin2 = false;
-    RPin3 = false;
-  }
 }
 
-  void playerMove(){
+void playerMove(){
     
     //Player Movement
   xPosition = analogRead(xPin);
@@ -186,9 +165,9 @@ void loop() {
 
 //  if(counter < 10){
 
-    for(int lightWait = 0; lightWait < 3000; lightWait++){
+    for(int lightWait = 0; lightWait < 300; lightWait++){
       Serial.println(lightWait);
-      while(lightWait < 1000){
+      if(lightWait < 100){
         digitalWrite(RedPin1, HIGH);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, LOW);
@@ -196,9 +175,30 @@ void loop() {
         RPin1 = true;
         RPin2 = false;
         RPin3 = false;
+
+        playerMove();
+
+        if(RPin1 == true && BPin1 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+
+          delay(1000);
+        }
       }
 
-      while(lightWait >= 1000 && lightWait < 2000){
+      if(lightWait >= 100 && lightWait < 200){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, HIGH);
         digitalWrite(RedPin3, LOW);
@@ -206,9 +206,30 @@ void loop() {
         RPin1 = false;
         RPin2 = true;
         RPin3 = false;
+
+        playerMove();
+
+        if(RPin2 == true && BPin2 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+
+          delay(1000);
+        }
       }
 
-      while(lightWait >= 2000){
+      if(lightWait >= 200){
         digitalWrite(RedPin1, LOW);
         digitalWrite(RedPin2, LOW);
         digitalWrite(RedPin3, HIGH);
@@ -216,8 +237,28 @@ void loop() {
         RPin1 = false;
         RPin2 = false;
         RPin3 = true;
+
+        playerMove();
+
+        if(RPin3 == true && BPin3 == true){
+
+          digitalWrite(BluePin1, LOW);
+          digitalWrite(BluePin2, LOW);
+          digitalWrite(BluePin3, LOW);
+          
+          digitalWrite(RedPin1, HIGH);
+          digitalWrite(RedPin2, HIGH);
+          digitalWrite(RedPin3, HIGH);
+
+          delay(1000);
+    
+          digitalWrite(RedPin1, LOW);
+          digitalWrite(RedPin2, LOW);
+          digitalWrite(RedPin3, LOW);
+
+          delay(1000);
+        }
       }
-      lightWait = 0;
     }
 
 
