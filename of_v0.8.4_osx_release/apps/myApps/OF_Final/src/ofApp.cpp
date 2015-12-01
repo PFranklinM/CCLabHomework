@@ -98,7 +98,6 @@ void ofApp::update(){
     int x, y;
     
     for (int i = 0; i < contourFinder.nBlobs; i++){
-        stringstream str;
         
         contourFinder.blobs[i].draw(0, 0);
         
@@ -112,7 +111,7 @@ void ofApp::update(){
         if(diff.length() < 50){
             
             if(ofGetElapsedTimeMillis() >= 100){
-                float percent = 1 - (diff.length() / 75);
+                float percent = 1 - (diff.length() / 50);
                 
                 xVel += diff.x * percent;
                 xVel = -xVel;

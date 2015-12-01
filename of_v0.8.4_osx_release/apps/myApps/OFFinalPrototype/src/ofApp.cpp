@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    camWidth = 1280;
-    camHeight = 720;
+    camWidth = ofGetWidth();
+    camHeight = ofGetHeight();
     
     
     vidGrabber.setDesiredFrameRate(60);
