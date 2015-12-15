@@ -168,7 +168,7 @@ void ofApp::update(){
             P1.set(averageXP1, averageYP1);
         
         
-        for (auto blob2 = ofGetWidth()*0.75; blob2 <= ofGetWidth(); blob2++) {
+        for (int blob2 = ofGetWidth()*0.75; blob2 <= ofGetWidth(); blob2++) {
             
             float xposP2;
             float yposP2;
@@ -229,9 +229,8 @@ void ofApp::update(){
     
     ofVec2f goalieDiffP2A = goalieP2A - pos;
     ofVec2f goalieDiffP2B = goalieP2B - pos;
-    
-    if(goalieDiffP1A.length() < 50 || goalieDiffP1B.length() < 50 ||
-       goalieDiffP2A.length() < 50 || goalieDiffP2B.length() < 50){
+        
+    if(goalieDiffP1A.length() < 150 || goalieDiffP2A.length() < 150){
         
         if(movingRight == true && pos.x > rightSide){
             
@@ -250,6 +249,25 @@ void ofApp::update(){
 
         
     }
+        
+        if(goalieDiffP1B.length() < 150 || goalieDiffP2B.length() < 150){
+            
+            if(movingRight == true && pos.x > rightSide){
+                
+                xVel = -xVel;
+                
+                yVel = -yVel;
+                
+            }
+            
+            if(movingLeft == true && pos.x < leftSide){
+                
+                xVel = -xVel;
+                
+                yVel = -yVel;
+            }
+
+        }
 }
 
     pos.x += xVel;
@@ -299,6 +317,11 @@ void ofApp::update(){
     if(goalieP2B.y <= ofGetHeight()*0.5 || goalieP2B.y >= yMax){
         goalieVelP2B = -goalieVelP2B;
     }
+    
+    if(player1Score == 21 || player2Score == 21){
+        xVel = 0;
+        yVel = 0;
+    }
 
     
     ofSetColor(255, 255, 255);
@@ -333,28 +356,36 @@ void ofApp::draw(){
     ofDrawBitmapString("Player 1: " + ofToString(player1Score), ofGetWidth()*0.05, ofGetHeight()*0.05);
     ofDrawBitmapString("Player 2: " + ofToString(player2Score), ofGetWidth()*0.9, ofGetHeight()*0.05);
     
+    if(player1Score == 21){
+        ofDrawBitmapString("Player 1 Wins!", ofGetWidth()/2, ofGetHeight()/2);
+    }
+    
+    if(player2Score == 21){
+        ofDrawBitmapString("Player 2 Wins!", ofGetWidth()/2, ofGetHeight()/2);
+    }
+    
     if(player1Score >= 10){
         ofSetColor(255);
         ofFill();
-        ofRect(goalieP2A.x, goalieP2A.y, 20, 100);
+        ofRect(goalieP2A.x, goalieP2A.y, 20, 150);
     }
     
     if(player1Score >= 20){
         ofSetColor(255);
         ofFill();
-        ofRect(goalieP2B.x, goalieP2B.y, 20, 100);
+        ofRect(goalieP2B.x, goalieP2B.y, 20, 150);
     }
     
     if(player2Score >= 10){
         ofSetColor(255);
         ofFill();
-        ofRect(goalieP1A.x, goalieP1A.y, 20, 100);
+        ofRect(goalieP1A.x, goalieP1A.y, 20, 150);
     }
     
     if(player2Score >= 20){
         ofSetColor(255);
         ofFill();
-        ofRect(goalieP1B.x, goalieP1B.y, 20, 100);
+        ofRect(goalieP1B.x, goalieP1B.y, 20, 150);
     }
 
     if(motion.x <= ofGetWidth()*0.25 && movingLeft == true){
