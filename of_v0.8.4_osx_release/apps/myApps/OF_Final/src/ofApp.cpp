@@ -121,10 +121,10 @@ void ofApp::update(){
         movingRight = true;
     }
     
-    if(xVel == 0){
-        movingLeft = true;
-        movingRight = true;
-    }
+//    if(xVel == 0){
+//        movingLeft = true;
+//        movingRight = true;
+//    }
     
     for (int i = 0; i < contourFinder.nBlobs; i++){
         
@@ -230,7 +230,16 @@ void ofApp::update(){
     ofVec2f goalieDiffP2A = goalieP2A - pos;
     ofVec2f goalieDiffP2B = goalieP2B - pos;
         
-    if(goalieDiffP1A.length() < 150 || goalieDiffP2A.length() < 150){
+    if(goalieDiffP1A.length() < 50 || goalieDiffP2A.length() < 50 ||
+       goalieDiffP1B.length() < 50 || goalieDiffP2B.length() < 50){
+        
+        if(movingLeft == true && pos.x < leftSide){
+
+            xVel = -xVel;
+        
+            yVel = -yVel;
+        }
+        
         
         if(movingRight == true && pos.x > rightSide){
             
@@ -239,35 +248,7 @@ void ofApp::update(){
             yVel = -yVel;
             
         }
-        
-        if(movingLeft == true && pos.x < leftSide){
-
-            xVel = -xVel;
-        
-            yVel = -yVel;
-        }
-
-        
     }
-        
-        if(goalieDiffP1B.length() < 150 || goalieDiffP2B.length() < 150){
-            
-            if(movingRight == true && pos.x > rightSide){
-                
-                xVel = -xVel;
-                
-                yVel = -yVel;
-                
-            }
-            
-            if(movingLeft == true && pos.x < leftSide){
-                
-                xVel = -xVel;
-                
-                yVel = -yVel;
-            }
-
-        }
 }
 
     pos.x += xVel;
